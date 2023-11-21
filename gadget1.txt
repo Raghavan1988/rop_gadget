@@ -1,0 +1,3 @@
+mov %rax,(%rdi)    #  writes the value from %rax to the memory address in %rdi
+xor %rax,%rax       #  zeroes out the %rax register
+ret  		       #  transfers control to the next gadget in the ROP chain
