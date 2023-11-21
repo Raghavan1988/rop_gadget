@@ -1,7 +1,8 @@
 # rop_gadget
 
-python compare_rop.py few_shot.txt gadget1.txt gadget2.txt 
-Please enter your OPEN AI API KEY to continue: <<Enter your OPEN AI API KEY>>
+###python compare_rop.py few_shot.txt gadget1.txt gadget2.txt 
+#####Please enter your OPEN AI API KEY to continue: <<Enter your OPEN AI API KEY>>
+
 {
   "is_rewrite": true,
   "reason": "The two gadgets are rewrites of one another because they have the same sequence of operations and perform the same function.",
