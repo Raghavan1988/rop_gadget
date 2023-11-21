@@ -1,0 +1,76 @@
+
+Below are ROP gadgets numbered as Rewrite (#) that are rewrites of one another. They may be SYNTACTICALLY different but are SEMANTICALLY same.
+
+Rewrite (1):
+  xaddq %rdi, %rsi             #  1     0x413cd0  4      OPC=xaddq_r64_r64  
+  xorl %eax, %eax              #  2     0x413cd4  2      OPC=xorl_r32_r32   
+  xchgq %rsi, %rdi             #  3     0x413cd6  3      OPC=xchgq_r64_r64  
+  movq %rsi, (%rdi)            #  4     0x413cd9  3      OPC=movq_m64_r64   
+  retq                         #  5     0x413cdc  1      OPC=retq   
+
+
+Rewrite(2):
+  addq %rsi, %rdi              #  1     0x413cd0  3      OPC=addq_r64_r64   
+  xchgq (%rdi), %rsi           #  2     0x413cd3  3      OPC=xchgq_r64_m64  
+  xorq %rax, %rax              #  3     0x413cd6  3      OPC=xorq_r64_r64   
+  incb %sil                    #  4     0x413cd9  2      OPC=incb_r8        
+  retq                         #  5     0x413cdb  1      OPC=retq       
+
+Rewrite(3):
+  xaddq %rsi, %rdi             #  1     0x413cd0  4      OPC=xaddq_r64_r64   
+  movnti %rdi, (%rdi)          #  2     0x413cd4  4      OPC=movnti_m64_r64  
+  xorl %eax, %eax              #  3     0x413cd8  2      OPC=xorl_r32_r32    
+  subq %rsi, (%rdi)            #  4     0x413cda  3      OPC=subq_m64_r64    
+  retq                         #  5     0x413cdd  1      OPC=retq 
+
+
+Rewrite(4):
+  xaddq %rdi, %rsi             #  1     0x413cd0  4      OPC=xaddq_r64_r64  
+  xchgq %rsi, %rdi             #  2     0x413cd4  3      OPC=xchgq_r64_r64  
+  xorq %rax, %rax              #  3     0x413cd7  3      OPC=xorq_r64_r64   
+  xchgq %rsi, (%rdi)           #  4     0x413cda  3      OPC=xchgq_m64_r64  
+  retq                         #  5     0x413cdd  1      OPC=retq       
+
+
+Rewrite(5):
+  xorq %rax, %rax              #  1     0x413cd0  3      OPC=xorq_r64_r64   
+  xaddq %rdi, %rsi             #  2     0x413cd3  4      OPC=xaddq_r64_r64  
+  xchgq %rdi, %rsi             #  3     0x413cd7  3      OPC=xchgq_r64_r64  
+  movq %rsi, (%rdi)            #  4     0x413cda  3      OPC=movq_m64_r64   
+  retq                         #  5     0x413cdd  1      OPC=retq       
+
+Rewrite(6):
+ xaddq %rdi, %rsi             #  1     0x413cd0  4      OPC=xaddq_r64_r64      
+  xchgq %rsi, %rdi             #  2     0x413cd4  3      OPC=xchgq_r64_r64      
+  andnq %rsi, %rsi, %rax       #  3     0x413cd7  5      OPC=andnq_r64_r64_r64  
+  movnti %rsi, (%rdi)          #  4     0x413cdc  4      OPC=movnti_m64_r64     
+  retq 
+
+Rewrite(7):
+xorq %rax, %rax              #  1     0x413cd0  3      OPC=xorq_r64_r64   
+  adcq %rsi, %rdi              #  2     0x413cd3  3      OPC=adcq_r64_r64   
+  movq %rsi, (%rdi)            #  3     0x413cd6  3      OPC=movq_m64_r64   
+  rcrw $0x0, %si               #  4     0x413cd9  4      OPC=rcrw_r16_imm8  
+  retq      
+
+Rewrite(8):
+  addq %rsi, %rdi              #  1     0x413cd0  3      OPC=addq_r64_r64_1  
+  movq $0x7, (%rdi)            #  2     0x413cd3  7      OPC=movq_m64_imm32  
+  xchgq %rsi, (%rdi)           #  3     0x413cda  3      OPC=xchgq_m64_r64   
+  xorq %rax, %rax              #  4     0x413cdd  3      OPC=xorq_r64_r64    
+  retq
+
+Rewrite(9);
+xaddq %rdi, %rsi             #  1     0x413cd0  4      OPC=xaddq_r64_r64    
+  xchgq %rsi, %rdi             #  2     0x413cd4  3      OPC=xchgq_r64_r64_1  
+  movnti %rsi, (%rdi)          #  3     0x413cd7  4      OPC=movnti_m64_r64   
+  xorl %eax, %eax              #  4     0x413cdb  2      OPC=xorl_r32_r32     
+  retq
+
+
+Rewrite(10):
+  xorq %rax, %rax              #  1     0x413cd0  3      OPC=xorq_r64_r64   
+  xaddq %rdi, %rsi             #  2     0x413cd3  4      OPC=xaddq_r64_r64  
+  xchgq %rsi, %rdi             #  3     0x413cd7  3      OPC=xchgq_r64_r64  
+  xchgq %rsi, (%rdi)           #  4     0x413cda  3      OPC=xchgq_m64_r64  
+  retq 
